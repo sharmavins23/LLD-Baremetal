@@ -1,11 +1,18 @@
 # !!! Change this to your specific Raspberry Pi version
 RPI_VERSION ?= 4
 
-# Set the CPU architecture based on the Raspberry Pi version
+# Set the CPU versioning based on the Raspberry Pi version
 ifeq ($(RPI_VERSION), 4)
 CPU_VER = cortex-a72
 else
 CPU_VER = cortex-a53
+endif
+
+# Set the CPU architecture based on the Raspberry Pi version
+ifeq ($(RPI_VERSION), 4)
+CPU_ARCH = bcm2711
+else
+CPU_ARCH = bcm2837
 endif
 
 # Files to load to SD card (to deploy)
