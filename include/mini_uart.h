@@ -4,7 +4,7 @@
 // Initializes the UART serial port data transfer procedure.
 void uart_init();
 // Receives a character.
-void uart_recv();
+char uart_recv();
 // Sends a character.
 void uart_send(char c);
 // Sends a string of characters.
