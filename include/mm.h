@@ -1,5 +1,5 @@
 #pragma once
-// Contains declarations for memory management/stack management functions
+// Contains declarations for memory management/stack management functions.
 
 // Definitions for pages, page tables from linux src
 #define PAGE_SHIFT 12
