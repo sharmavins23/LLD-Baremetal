@@ -32,7 +32,7 @@ BUILD_DIR = build
 SRC_DIR = src
 
 # File to make
-all : kernel8.img
+all : clean kernel8.img armstub
 
 # Cleans up all object files and build directory
 clean : 
