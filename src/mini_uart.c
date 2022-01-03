@@ -24,7 +24,7 @@ void uart_init() {
     // Set Mini UART control to 0
     REGS_AUX->mu_control = 0;
     // Set active flags for Mini UART
-    REGS_AUX->mu_ier = 0;
+    REGS_AUX->mu_ier = 2;
     // Set Mini UART to 8-bit mode
     REGS_AUX->mu_lcr = 3;
     REGS_AUX->mu_mcr = 0;

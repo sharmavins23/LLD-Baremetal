@@ -1,6 +1,7 @@
 #include "common.h"
 #include "mini_uart.h"
 #include "printf.h"
+#include "irq.h"
 
 // Printf initialization function for placing a simple character
 void putc(void *p, char c) {
@@ -20,6 +21,10 @@ void kernel_main() {
 
     printf("\nRaspberry Pi Bare Metal OS Initializing...\n");
 
+    irq_init_vectors();
+    enable_interrupt_controller();
+    irq_enable();
+
 #if RPI_VERSION == 3
     printf("\tRaspberry Pi 3 \n");
 #elif RPI_VERSION == 4
@@ -29,6 +34,7 @@ void kernel_main() {
     printf("\nException level: %d\n", get_el());
 
     while (1) {
-        uart_send(uart_recv());
+        // Hang the processor for now
+        // uart_send(uart_recv());
     }
 }
