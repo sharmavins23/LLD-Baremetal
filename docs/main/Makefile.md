@@ -76,3 +76,11 @@ assembled; It is linked into C code and compiled via GCC.
 | `-Iinclude`           | `-I` specifies the include folder path to be `include/`.                                                                                                 |
 | `-mgeneral-regs-only` | Indicates that no floating-point or advanced SIMD registers should be used when generating code. Any explicit floating-point code will generate errors.  |
 | `-mcpu`               | Details the CPU version. Not required.                                                                                                                   |
+
+## Compilation Notes
+
+The build targets are specified above, with a few key notes.
+
+-   It seems the kernel8.img file is required for proper compilation even on the
+    Raspberry Pi 4; It's recommended to generate binaries for all Raspberry Pi
+    variants on make.
