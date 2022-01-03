@@ -52,11 +52,11 @@ void handle_irq() {
     u32 irq;
 
 #if RPI_VERSION == 4
-    irq = REGS_IRQ->irq_pending_0;
+    irq = REGS_IRQ->irq0_pending_0;
 #endif
 
 #if RPI_VERSION == 3
-    irq = REGS_IRQ->irq_pending_1;
+    irq = REGS_IRQ->irq0_pending_1;
 #endif
 
     while (irq) {
