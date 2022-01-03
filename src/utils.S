@@ -23,3 +23,10 @@ put32:
 get32:
             ldr         w0, [x0]            // Load value w0 from address x0
             ret
+
+// Gets the exception level of the current runtime.
+.global     get_el
+get_el:
+            mrs         x0, CurrentEL       // Extract the exception level
+            lsr         x0, x0, #2          // Select the specific level bit
+            ret

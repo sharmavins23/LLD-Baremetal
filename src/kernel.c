@@ -10,13 +10,15 @@ void putc(void *p, char c) {
     uart_send(c);
 }
 
+u32 get_el();
+
 void kernel_main() {
     uart_init();
 
     // Initialize printf's formatting system with our putc function for UART
     init_printf(0, putc);
 
-    printf("Raspberry Pi Bare Metal OS Initializing...\n");
+    printf("\nRaspberry Pi Bare Metal OS Initializing...\n");
 
 #if RPI_VERSION == 3
     printf("\tRaspberry Pi 3 \n");
@@ -24,7 +26,7 @@ void kernel_main() {
     printf("\tRaspberry Pi 4 \n");
 #endif
 
-    printf("\n\nDone!\n");
+    printf("\nException level: %d\n", get_el());
 
     while (1) {
         uart_send(uart_recv());
