@@ -69,8 +69,13 @@ kernel8.img: $(SRC_DIR)/linker.ld $(OBJ_FILES)
 	@echo Using $(value ARMGNU)
 	$(ARMGNU)-ld -T $(SRC_DIR)/linker.ld -o $(BUILD_DIR)/kernel8.elf $(OBJ_FILES)
 	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BUILD_DIR)/kernel8.img
-ifeq ($(RPI_VERSION), 4)
 	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BOOTMNT)/kernel8-rpi4.img
-else
 	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BOOTMNT)/kernel8.img
-endif
+
+armstub/build/armstub_s.o: armstub/src/armstub.S
+	$(ARMGNU)-gcc $(COPS) -MMD -c $< -o $@
+
+armstub: armstub/build/armstub_s.o
+	$(ARMGNU)-ld --section-start=.text=0 -o armstub/build/armstub.elf armstub/build/armstub_s.O
+	$(ARMGNU)-objcopy armstub/build/armstub.elf -O binary armstub-new.bin
+	$(ARMGNU)-objcopy armstub/build/armstub.elf -O binary $(BOOTMNT)/armstub-new.bin
